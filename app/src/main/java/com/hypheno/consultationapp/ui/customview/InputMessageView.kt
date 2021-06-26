@@ -1,4 +1,4 @@
-package com.hypheno.consultationapp.ui
+package com.hypheno.consultationapp.ui.customview
 
 import android.content.Context
 import android.util.AttributeSet

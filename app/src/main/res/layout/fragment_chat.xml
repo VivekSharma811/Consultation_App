@@ -12,7 +12,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.ChatFragment">
+        tools:context=".ui.fragment.ChatFragment">
 
 
         <androidx.appcompat.widget.Toolbar
@@ -85,7 +85,7 @@
             />
 
 
-        <com.hypheno.consultationapp.ui.InputMessageView
+        <com.hypheno.consultationapp.ui.customview.InputMessageView
             android:id="@+id/messageView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

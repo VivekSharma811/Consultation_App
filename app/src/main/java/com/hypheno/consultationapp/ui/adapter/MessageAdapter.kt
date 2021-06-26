@@ -1,16 +1,13 @@
-package com.hypheno.consultationapp.ui
+package com.hypheno.consultationapp.ui.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
 import com.hypheno.consultationapp.R
-import com.hypheno.consultationapp.databinding.MessageItemLeftBinding
 import com.hypheno.consultationapp.databinding.MessageItemLeftMedicationBinding
-import com.hypheno.consultationapp.databinding.MessageItemRightBinding
 import com.hypheno.consultationapp.databinding.MessageLeftTestBinding
 import com.hypheno.consultationapp.model.dataclass.Message
 import kotlinx.android.synthetic.main.message_item_left.view.*
@@ -30,13 +27,19 @@ class MessageAdapter(val mContext: Context, val messages: List<Message>) :
                 val binding =
                     DataBindingUtil.inflate<ViewDataBinding>(inflater, viewType, parent, false)
 
-                return MessageViewHolder(binding)
+                return MessageViewHolder(
+                    binding
+                )
             }
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MessageViewHolder {
-        return MessageViewHolder.create(LayoutInflater.from(parent.context), parent, viewType)
+        return MessageViewHolder.create(
+            LayoutInflater.from(parent.context),
+            parent,
+            viewType
+        )
     }
 
     override fun getItemCount() = messages.size

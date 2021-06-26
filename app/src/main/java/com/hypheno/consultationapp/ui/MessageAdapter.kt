@@ -36,7 +36,21 @@ class MessageAdapter(val mContext: Context, val messages: List<Message>) :
     override fun getItemCount() = messages.size
 
     override fun onBindViewHolder(holder: MessageViewHolder, position: Int) {
-        holder.itemView.tvTextMessage.text = messages[position].payload.toString()
+        messages[position].let {
+            if(it.user.type.equals("customer")) {
+                it.payload.text?.let {
+                    holder.itemView.tvTextMessage.text = messages[position].payload.text
+                } ?: run {
+                    holder.itemView.tvTextMessage.text = "You have shared a document"
+                }
+            } else {
+                it.payload.text?.let {
+                    holder.itemView.tvTextMessage.text = messages[position].payload.text
+                } ?: run {
+                    holder.itemView.tvTextMessage.text = messages[position].payload.toString()
+                }
+            }
+        }
     }
 
     override fun getItemViewType(position: Int): Int {

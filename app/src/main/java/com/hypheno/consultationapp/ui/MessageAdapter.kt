@@ -16,13 +16,21 @@ class MessageAdapter(val mContext: Context, val messages: List<Message>) :
     inner class MessageViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 
     override fun onCreateViewHolder(parent: ViewGroup, position: Int): MessageViewHolder {
-        return if(position == 1) {
-            val view = LayoutInflater.from(mContext).inflate(R.layout.message_item_right, parent, false)
-            MessageViewHolder(view)
-        } else {
-            val view = LayoutInflater.from(mContext).inflate(R.layout.message_item_left, parent, false)
-            MessageViewHolder(view)
+        return when(position) {
+            1 -> {
+                val view = LayoutInflater.from(mContext).inflate(R.layout.message_item_right, parent, false)
+                MessageViewHolder(view)
+            }
+            2 -> {
+                val view = LayoutInflater.from(mContext).inflate(R.layout.message_item_right, parent, false)
+                MessageViewHolder(view)
+            }
+            else -> {
+                val view = LayoutInflater.from(mContext).inflate(R.layout.message_item_left, parent, false)
+                MessageViewHolder(view)
+            }
         }
+
     }
 
     override fun getItemCount() = messages.size
@@ -33,7 +41,11 @@ class MessageAdapter(val mContext: Context, val messages: List<Message>) :
 
     override fun getItemViewType(position: Int): Int {
         return if(messages[position].user.type.equals("customer")) {
-            1
+            messages[position].payload.text?.let {
+                1
+            } ?: run {
+                2
+            }
         } else {
             0
         }

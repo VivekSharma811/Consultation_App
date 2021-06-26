@@ -1,4 +1,7 @@
-package com.hypheno.consultationapp
+package com.hypheno.consultationapp.model.dataclass
+
+import com.hypheno.consultationapp.model.dataclass.Payload
+import com.hypheno.consultationapp.model.dataclass.User
 
 data class Message(
     val channel_id: String,

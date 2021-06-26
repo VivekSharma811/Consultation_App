@@ -1,7 +1,8 @@
-package com.hypheno.consultationapp
+package com.hypheno.consultationapp.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.hypheno.consultationapp.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -1,4 +1,4 @@
-package com.hypheno.consultationapp
+package com.hypheno.consultationapp.model.dataclass
 
 data class Payload(
     val file_name: String,

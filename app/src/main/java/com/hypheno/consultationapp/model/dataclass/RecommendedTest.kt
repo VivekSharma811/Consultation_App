@@ -1,4 +1,4 @@
-package com.hypheno.consultationapp
+package com.hypheno.consultationapp.model.dataclass
 
 data class RecommendedTest(
     val id: Int,

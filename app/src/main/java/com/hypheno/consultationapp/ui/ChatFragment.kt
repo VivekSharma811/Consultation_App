@@ -6,8 +6,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.hypheno.consultationapp.R
+import com.hypheno.consultationapp.databinding.FragmentChatBinding
 import com.hypheno.consultationapp.model.dataclass.ChatData
 import com.hypheno.consultationapp.model.network.ApiService
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -20,13 +22,14 @@ class ChatFragment : Fragment() {
 
     private val disposable = CompositeDisposable()
     var adapter: MessageAdapter? = null
+    private lateinit var dataBinding: FragmentChatBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-        return inflater.inflate(R.layout.fragment_chat, container, false)
+        dataBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_chat, container, false)
+        return dataBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -49,6 +52,7 @@ class ChatFragment : Fragment() {
                         Log.d("success", t.toString())
                         adapter = context?.let { MessageAdapter(it, t.messages) }
                         rvChat.adapter = adapter
+                        dataBinding.doctor = t.consultation_request
                     }
 
                     override fun onError(e: Throwable) {

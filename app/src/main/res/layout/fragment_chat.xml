@@ -44,7 +44,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
-                    android:text="Dr.Jane Doe"
+                    android:text="@{doctor.doctor_name}"
                     android:textStyle="bold"
                     app:layout_constraintStart_toEndOf="@+id/ivUser"
                     app:layout_constraintTop_toTopOf="@+id/ivUser" />
@@ -53,7 +53,7 @@
                     android:id="@+id/ivOnline"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/user_online"
+                    android:src="@{doctor.active ? @drawable/user_online : @drawable/user_offline}"
                     app:layout_constraintStart_toEndOf="@+id/ivUser"
                     app:layout_constraintBottom_toBottomOf="@+id/ivUser"
                     android:layout_marginStart="10dp"
@@ -64,7 +64,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
-                    android:text="Online"
+                    android:text="@{doctor.active ? @string/online : @string/offline}"
                     android:textSize="10sp"
                     app:layout_constraintStart_toEndOf="@+id/ivOnline"
                     app:layout_constraintTop_toTopOf="@+id/ivOnline" />

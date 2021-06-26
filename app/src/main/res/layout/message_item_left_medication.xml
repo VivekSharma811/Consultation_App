@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="medicine"
+            type="com.hypheno.consultationapp.model.dataclass.Medication" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="@drawable/bg_left"
+        android:padding="9dp">
+
+        <TextView
+            android:id="@+id/tvMedHeading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:text="Doctor has shared a prescription"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvMedName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvMedHeading"
+            android:layout_marginStart="15dp"
+            android:text="@{medicine.name + `, ` + medicine.dose_quantity}"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tvMedDuration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvMedHeading"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="6dp"
+            android:layout_marginEnd="10dp"
+            android:text="@{medicine.duration +  ` ` + medicine.duration_unit}"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tvMedFreq"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvMedName"
+            android:layout_marginStart="6dp"
+            android:text="@{medicine.frequency}"
+            android:textSize="12sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvMedFreq"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tvMedOrder"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Order Medicine"
+                android:textColor="@color/color1" />
+
+            <TextView
+                android:id="@+id/tvMedPres"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Open Prescription"
+                android:textColor="@color/color1" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+</layout>

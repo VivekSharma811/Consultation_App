@@ -11,6 +11,7 @@ import com.hypheno.consultationapp.R
 import com.hypheno.consultationapp.databinding.MessageItemLeftBinding
 import com.hypheno.consultationapp.databinding.MessageItemLeftMedicationBinding
 import com.hypheno.consultationapp.databinding.MessageItemRightBinding
+import com.hypheno.consultationapp.databinding.MessageLeftTestBinding
 import com.hypheno.consultationapp.model.dataclass.Message
 import kotlinx.android.synthetic.main.message_item_left.view.*
 
@@ -19,9 +20,6 @@ class MessageAdapter(val mContext: Context, val messages: List<Message>) :
 
 
     class MessageViewHolder(val binding: ViewDataBinding) : RecyclerView.ViewHolder(binding.root) {
-        private var messageLeftMedicationBinding: MessageItemLeftMedicationBinding? = null
-        private var messageItemRightBinding: MessageItemRightBinding? = null
-        private var messageItemLeftBinding: MessageItemLeftBinding? = null
 
         companion object {
             fun create(
@@ -35,56 +33,10 @@ class MessageAdapter(val mContext: Context, val messages: List<Message>) :
                 return MessageViewHolder(binding)
             }
         }
-
-//        constructor(binding: MessageItemLeftMedicationBinding) : super(binding.getRoot()) {
-//            messageLeftMedicationBinding = binding
-//        }
-//
-//        constructor(binding: MessageItemLeftBinding) : super(binding.getRoot()) {
-//            messageItemLeftBinding = binding
-//        }
-//
-//        constructor(binding: MessageItemRightBinding) : super(binding.getRoot()) {
-//            messageItemRightBinding = binding
-//        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MessageViewHolder {
         return MessageViewHolder.create(LayoutInflater.from(parent.context), parent, viewType)
-//        return when (position) {
-//            1 -> {
-//                val binding = MessageItemRightBinding.inflate(
-//                    LayoutInflater.from(parent.context),
-//                    parent,
-//                    false
-//                )
-//                MessageViewHolder(binding)
-//            }
-//            2 -> {
-//                val binding = MessageItemRightBinding.inflate(
-//                    LayoutInflater.from(parent.context),
-//                    parent,
-//                    false
-//                )
-//                MessageViewHolder(binding)
-//            }
-//            3 -> {
-//                val binding = MessageItemLeftMedicationBinding.inflate(
-//                    LayoutInflater.from(parent.context),
-//                    parent,
-//                    false
-//                )
-//                MessageViewHolder(binding)
-//            }
-//            else -> {
-//                val binding = MessageItemLeftBinding.inflate(
-//                    LayoutInflater.from(parent.context),
-//                    parent,
-//                    false
-//                )
-//                MessageViewHolder(binding)
-//            }
-//        }
     }
 
     override fun getItemCount() = messages.size
@@ -102,13 +54,7 @@ class MessageAdapter(val mContext: Context, val messages: List<Message>) :
                     holder.itemView.tvTextMessage.text = messages[position].payload.text
                 } ?: run {
                     it.payload.recommended_tests?.let { list ->
-                        var str = "Recommended Lab Tests \n"
-                        for (test in list) {
-                            str += test.name + "\n"
-                        }
-                        str += "Note: Labs can be ordered once the consultation is complete"
-
-                        holder.itemView.tvTextMessage.text = str
+                        (holder.binding as MessageLeftTestBinding).payload = it.payload
                     } ?: run {
                         (holder.binding as MessageItemLeftMedicationBinding).medicine =
                             it.payload.medications?.get(0)
@@ -130,7 +76,7 @@ class MessageAdapter(val mContext: Context, val messages: List<Message>) :
                 R.layout.message_item_left
             } ?: run {
                 messages[position].payload.recommended_tests?.let {
-                    R.layout.message_item_left
+                    R.layout.message_left_test
                 } ?: run {
                     R.layout.message_item_left_medication
                 }
